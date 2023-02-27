@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="/js/my.js"></script>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="comboboxJudeteOrase.css" />
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+          crossorigin="anonymous"
+        />
+        <title>Form Validation</title>
+      </head>
+
+<body onload="resetSelection()">
+
+    <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+
+        <option value="" disabled selected>Alege Judetul</option>
+
+        <option>Cluj-Napoca</option>
+
+        <option>Maramures</option>
+
+        <option>Bistrita-Nasaud</option>
+
+    </select>
+
+    <select id="citySelect" size="1" >
+
+        <option value="" disabled selected>Alege orasul</option>
+
+        <option></option>
+
+    </select>
+
+   
+
+<br><br>
+
+    <button ondblclick="dubluClick()">Apasa-ma</button>
+    <br><br>
+    <h1 ondblclick="dubluClick()" class='ondblclick'>Apasa</h1>
+<br><br>
+
+
+<br><br>
+
+<div class="cuvantInText">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales augue neque, eu egestas urna dignissim iaculis. Vestibulum interdum pretium enim, vel eleifend tellus semper bibendum. 
+    Vivamus finibus molestie sapien et tristique. Duis quis sapien ut nisl elementum convallis. Pellentesque euismod tincidunt vestibulum. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+    Duis pellentesque eleifend erat, a posuere ex tincidunt non. Maecenas euismod scelerisque diam, quis bibendum lacus ultrices accumsan. Aenean blandit tincidunt neque, sit amet scelerisque erat ultrices vel. 
+    Integer pharetra purus quis varius commodo. Curabitur eu cursus mi. Donec sem justo, eleifend luctus gravida at, posuere a lacus. Integer faucibus nisl ex, ac dignissim neque ornare ut. 
+    Sed massa quam, imperdiet at justo ut, bibendum porta lorem. Integer erat erat, blandit non metus vitae, cursus bibendum ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+</div>
+
+<script>
+        $('.cuvantInText').click(function(e){
+        s = window.getSelection();
+        var range = s.getRangeAt(0);
+        var node = s.anchorNode;
+        while(range.toString().indexOf(' ') != 0) {                 
+          range.setStart(node,(range.startOffset -1));
+        }
+        range.setStart(node, range.startOffset +1);
+        do{
+          range.setEnd(node,range.endOffset + 1);
+        }while(range.toString().indexOf(' ') == -1 && range.toString().trim() != '');
+        var str = range.toString().trim();
+        alert(str);
+     });
+     
+     
+     $(".cuvantInText").on('contextmenu', function(evt){
+        evt.preventDefault();
+        var e = window.event;
+        if (e.button == 2) {
+             var range = document.caretRangeFromPoint(e.pageX, e.pageY);
+          var selection = window.getSelection();
+               selection.removeAllRanges();
+                 selection.addRange(range);
+          jQuery(document.elementFromPoint(e.pageX, e.pageY)).click();
+        }
+     });
+    </script>
+
+<br><br>
+
+
+<button onclick="listaCuElementeDinamice(5)"> Lista de elemente neordonata este </button>
+<br><br>
+
+
+<br><br>
+
+<form id="form">
+    <div>
+      <label for="email">Email Validation</label>
+      <i class="far fa-envelope"></i>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="abc@gmail.com"
+        pattern="[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Email-ul trebuie sa contina doar:
+        - litere
+        - cifre
+        - caracterul _
+        - @
+        - ."
+      >
+      <i class="fas fa-exclamation-circle failure-icon"></i>
+      <i class="far fa-check-circle success-icon"></i>
+      <div class="error"></div>
+    </div>
+    <button type="submit" id="submit">Submit</button>
+  </form>
+
+<br><br>
+
+</body>
+    <script src="comboboxJudeteOrase.js"></script>
+</html> 
